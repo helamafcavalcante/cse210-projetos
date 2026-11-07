@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+        Console.WriteLine("Olá, Mundo! Este é o Projeto Exercicio3.");
         string continuarJogando = "sim";
         while (continuarJogando == "sim")
         {
@@ -31,8 +31,8 @@ class Program
                     Console.WriteLine($"Você precisou de {numeroTentativas} tentativas! ");
                 }
             }
-            Console.Write("Você quer continuar Jogando? ");
-            continuarJogando = Console.ReadLine();
+            Console.Write("Você quer continuar jogando? (sim/não): ");
+            continuarJogando = Console.ReadLine().ToLower();
         }
     }
 }
