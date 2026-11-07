@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("Olá, Mundo! Este é o Projeto Exercicio2.");
         Console.Write("Qual a nota do aluno de 0 a 100? ");
         string notaDigitada = Console.ReadLine();
         int nota = int.Parse(notaDigitada);
