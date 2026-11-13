@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Curriculo
 {
-    public string _nome = "";
+    public string _nome;
     public List<Emprego> _empregos = new List<Emprego>();
 
     public void Exibir()
