@@ -1,0 +1,25 @@
+Explicar o significado de Abstração.
+
+R= A abstração é um princípio da programação que consiste em ocultar detalhes complexos de implementação e apresentar apenas as características e funcionalidades essenciais. Dessa forma, é possível trabalhar com conceitos mais simples sem precisar conhecer todos os detalhes internos de funcionamento
+
+Destacar um benefício da Abstração.
+
+R= Um dos principais benefícios da abstração é reduzir a complexidade do código. Ao esconder detalhes desnecessários, o programador pode focar apenas nas informações importantes para resolver o problema. Isso torna o código mais organizado.
+
+Fornecer uma aplicação de Abstração.
+
+R= 
+Uma aplicação da abstração ocorre quando utilizamos bibliotecas e métodos prontos fornecidos pela linguagem C#. Por exemplo, ao exibir mensagens ou receber informações do usuário através da classe Console, o programador utiliza funcionalidades complexas sem precisar conhecer todos os detalhes internos de sua implementação.
+
+Usar um exemplo de código de Abstração do programa que você criou. (Você deve copiar e colar algumas linhas de código que demonstrem o uso desse princípio.)
+R=
+Console.Write("Por favor, insira seu número favorito: ");
+int numero = int.Parse(Console.ReadLine());
+
+int numeroQuadrado = numero * numero;
+
+
+
+Explicar detalhadamente esses conceitos. (Isso provavelmente não pode ser feito em menos de 100 palavras.)
+
+A abstração é um princípio da programação que consiste em ocultar detalhes complexos de implementação e disponibilizar apenas as funcionalidades necessárias para o usuário ou programador. Isso permite que o desenvolvimento seja mais simples e eficiente, pois não é necessário entender todos os detalhes internos de um recurso para utilizá-lo. No meu programa, utilizei os métodos Console.Write(), Console.ReadLine() e int.Parse(). Esses métodos realizam tarefas complexas, como exibir informações na tela, capturar dados digitados pelo usuário e converter textos em números inteiros. No entanto, eu não preciso saber como essas operações são realizadas internamente. Basta conhecer a forma correta de utilizá-las. Essa simplificação é um exemplo de abstração, pois a linguagem C# esconde a complexidade e fornece uma interface simples para que o programador possa resolver problemas de maneira mais rápida e organizada.
