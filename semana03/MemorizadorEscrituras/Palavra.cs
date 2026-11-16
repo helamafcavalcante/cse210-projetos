@@ -1,6 +1,6 @@
-class Palavra
+public class Palavra
 {
-    private readonly string _texto;
+    private string _texto;
     private bool _estaOculta;
 
     public Palavra(string texto)
@@ -26,6 +26,13 @@ class Palavra
 
     public string ObterTexto()
     {
-        return _estaOculta ? new string('_', _texto.Length) : _texto;
+        if (_estaOculta)
+        {
+            return new string('_', _texto.Length);
+        }
+        else
+        {
+            return _texto;
+        }
     }
 }

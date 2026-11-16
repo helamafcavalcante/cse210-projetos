@@ -1,4 +1,5 @@
-///Além do requisito básico, o programa mantém uma biblioteca e sorteia uma escritura a cada execução.
+// O programa possui uma biblioteca com várias escrituras
+// e escolhe uma delas aleatoriamente a cada execução.
 
 using System;
 
@@ -6,7 +7,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Além do requisito básico, o programa mantém uma biblioteca e sorteia uma escritura a cada execução.
         Escritura[] biblioteca = new Escritura[]
         {
             new Escritura(
@@ -20,34 +20,31 @@ class Program
                 "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.")
         };
 
-        Escritura escritura = biblioteca[Random.Shared.Next(biblioteca.Length)];
+        Random random = new Random();
+
+        Escritura escritura = biblioteca[random.Next(biblioteca.Length)];
 
         while (true)
         {
-            if (!Console.IsOutputRedirected)
-            {
-                Console.Clear();
-            }
+            Console.Clear();
 
             Console.WriteLine(escritura.ObterTexto());
             Console.WriteLine();
+
             Console.Write("Pressione Enter para ocultar palavras ou digite 'sair' para encerrar: ");
 
             string resposta = Console.ReadLine();
-            if (resposta == null ||
-                string.Equals(resposta.Trim(), "sair", StringComparison.OrdinalIgnoreCase))
+
+            if (resposta.ToLower() == "sair")
             {
                 break;
             }
 
             escritura.OcultarPalavrasAleatorias(3);
+
             if (escritura.EstaCompletamenteOculta())
             {
-                if (!Console.IsOutputRedirected)
-                {
-                    Console.Clear();
-                }
-
+                Console.Clear();
                 Console.WriteLine(escritura.ObterTexto());
                 break;
             }

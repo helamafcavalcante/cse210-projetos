@@ -1,13 +1,16 @@
-class Referencia
+public class Referencia
 {
-    private readonly string _livro;
-    private readonly int _capitulo;
-    private readonly int _versiculo;
-    private readonly int _ultimoVersiculo;
+    private string _livro;
+    private int _capitulo;
+    private int _versiculo;
+    private int _ultimoVersiculo;
 
     public Referencia(string livro, int capitulo, int versiculo)
-        : this(livro, capitulo, versiculo, versiculo)
     {
+        _livro = livro;
+        _capitulo = capitulo;
+        _versiculo = versiculo;
+        _ultimoVersiculo = versiculo;
     }
 
     public Referencia(string livro, int capitulo, int versiculoInicial, int versiculoFinal)
@@ -20,10 +23,13 @@ class Referencia
 
     public string ObterTexto()
     {
-        string versiculos = _versiculo == _ultimoVersiculo
-            ? _versiculo.ToString()
-            : $"{_versiculo}-{_ultimoVersiculo}";
-
-        return $"{_livro} {_capitulo}:{versiculos}";
+        if (_versiculo == _ultimoVersiculo)
+        {
+            return $"{_livro} {_capitulo}:{_versiculo}";
+        }
+        else
+        {
+            return $"{_livro} {_capitulo}:{_versiculo}-{_ultimoVersiculo}";
+        }
     }
 }

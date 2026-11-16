@@ -1,20 +1,24 @@
-class Escritura
+public class Escritura
 {
-    private readonly Referencia _referencia;
-    private readonly List<Palavra> _palavras;
+    private Referencia _referencia;
+    private List<Palavra> _palavras;
 
     public Escritura(Referencia referencia, string texto)
     {
         _referencia = referencia;
-        _palavras = texto
-            .Split((char[])null, StringSplitOptions.RemoveEmptyEntries)
-            .Select(palavra => new Palavra(palavra))
-            .ToList();
+        _palavras = new List<Palavra>();
+
+        string[] palavrasTexto = texto.Split(' ');
+
+        foreach (string palavra in palavrasTexto)
+        {
+            _palavras.Add(new Palavra(palavra));
+        }
     }
 
     public void OcultarPalavrasAleatorias(int quantidade)
     {
-        List<int> indicesVisiveis = new();
+        List<int> indicesVisiveis = new List<int>();
         for (int i = 0; i < _palavras.Count; i++)
         {
             if (!_palavras[i].EstaOculta())
@@ -23,24 +27,49 @@ class Escritura
             }
         }
 
-        int quantidadeParaOcultar = Math.Min(Math.Max(quantidade, 0), indicesVisiveis.Count);
+        Random random = new Random();
+        int quantidadeParaOcultar = quantidade;
+        if (quantidadeParaOcultar < 0)
+        {
+            quantidadeParaOcultar = 0;
+        }
+
+        if (quantidadeParaOcultar > indicesVisiveis.Count)
+        {
+            quantidadeParaOcultar = indicesVisiveis.Count;
+        }
+
         for (int i = 0; i < quantidadeParaOcultar; i++)
         {
-            int indiceAleatorio = Random.Shared.Next(i, indicesVisiveis.Count);
-            (indicesVisiveis[i], indicesVisiveis[indiceAleatorio]) =
-                (indicesVisiveis[indiceAleatorio], indicesVisiveis[i]);
-            _palavras[indicesVisiveis[i]].Ocultar();
+            int posicaoAleatoria = random.Next(indicesVisiveis.Count);
+            int indicePalavra = indicesVisiveis[posicaoAleatoria];
+            _palavras[indicePalavra].Ocultar();
+            indicesVisiveis.RemoveAt(posicaoAleatoria);
         }
     }
 
     public bool EstaCompletamenteOculta()
     {
-        return _palavras.All(palavra => palavra.EstaOculta());
+        foreach (Palavra palavra in _palavras)
+        {
+            if (!palavra.EstaOculta())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public string ObterTexto()
     {
-        string texto = string.Join(" ", _palavras.Select(palavra => palavra.ObterTexto()));
+        string texto = "";
+
+        foreach (Palavra palavra in _palavras)
+        {
+            texto += palavra.ObterTexto() + " ";
+        }
+
         return $"{_referencia.ObterTexto()} {texto}";
     }
 }
